@@ -6,6 +6,7 @@ var Database = {
             this.index += 1
             vegetable.id = this.index
             this.db.push(vegetable)
+            return vegetable
         } else {
             console.log('Sorry we do not allow duplicates in our database.')
         }
@@ -15,7 +16,9 @@ var Database = {
             return elem[param] === value
         })
         if (index) {
+            var removed = this.db[index]
             this.db.splice(index, 1)
+            return removed
         }
     },
     findVegetableByProperty: function (value, param) {
@@ -33,6 +36,7 @@ var Database = {
             return elem.name === oldVegetable.name
         })
         if (index) {
+            newVegetable.id = this.db[index].id
             this.db[index] = newVegetable
         }
     }
