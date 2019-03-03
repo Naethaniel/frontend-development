@@ -11,7 +11,7 @@ var Database = {
         }
     },
     removeVegetableByProperty: function (value, param) {
-        var index = this.db.findIndex(function(elem) {
+        var index = this.db.findIndex(function (elem) {
             return elem[param] === value
         })
         if (index) {
@@ -27,6 +27,14 @@ var Database = {
         return this.db.filter(function (element) {
             return element[param] === value
         })
+    },
+    updateVegetable: function (oldVegetable, newVegetable) {
+        var index = this.db.findIndex(function (elem) {
+            return elem.name === oldVegetable.name
+        })
+        if (index) {
+            this.db[index] = newVegetable
+        }
     }
 }
 var tomato = {
@@ -85,3 +93,17 @@ Database.removeVegetableByProperty(4, 'id')
 console.log(Database.db)
 
 Database.findVegetablesByProperty('Plantae', 'kingdom')
+
+var newVegetable = {
+    name: 'Super new cucumber',
+    color: 'Light green',
+    size: 'Gigantic',
+    species: 'Cucumis sativus',
+    kingdom: 'Plantae',
+    weight: 300,
+    isEdible: true
+}
+
+Database.updateVegetable(cucumber, newVegetable)
+
+console.log(Database.db)
