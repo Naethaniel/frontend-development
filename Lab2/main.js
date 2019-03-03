@@ -22,6 +22,11 @@ var Database = {
         return this.db.find(function (element) {
             return element[param] === value
         })
+    },
+    findVegetablesByProperty: function (value, param) {
+        return this.db.filter(function (element) {
+            return element[param] === value
+        })
     }
 }
 var tomato = {
@@ -76,3 +81,7 @@ console.log(Database.findVegetableByProperty('Tomato', 'name'))
 console.log(Database.findVegetableByProperty('Test', 'name'))
 
 Database.removeVegetableByProperty(4, 'id')
+
+console.log(Database.db)
+
+Database.findVegetablesByProperty('Plantae', 'kingdom')
