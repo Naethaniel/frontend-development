@@ -1,6 +1,20 @@
 var Database = {
     db: [],
-    index: 0
+    index: 0,
+    addVegetable: function (vegetable) {
+        if (!this.findVegetableByProperty(vegetable.name, 'name')) {
+            this.index += 1
+            vegetable.id = this.index
+            this.db.push(vegetable)
+        } else {
+            console.log('Sorry we do not allow duplicates in our database.')
+        }
+    },
+    findVegetableByProperty: function (value, param) {
+        return this.db.find(function (element) {
+            return element[param] === value
+        })
+    }
 }
 var tomato = {
     name: 'Tomato',
@@ -41,6 +55,22 @@ var rottenPotato = {
     weight: 250,
     isEdible: false
 }
+
+
+Database.addVegetable(tomato)
+Database.addVegetable(potato)
+Database.addVegetable(cucumber)
+Database.addVegetable(cucumber)
+Database.addVegetable(rottenPotato)
+
+console.log(Database.db)
+
+Database.findVegetableByProperty(3, 'id')
+
+console.log(Database.db)
+
+console.log(Database.findVegetableByProperty('Tomato', 'name'))
+console.log(Database.findVegetableByProperty('Test', 'name'))
 
 
 
