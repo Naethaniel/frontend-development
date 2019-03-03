@@ -10,6 +10,14 @@ var Database = {
             console.log('Sorry we do not allow duplicates in our database.')
         }
     },
+    removeVegetableByProperty: function (value, param) {
+        var index = this.db.findIndex(function(elem) {
+            return elem[param] === value
+        })
+        if (index) {
+            this.db.splice(index, 1)
+        }
+    },
     findVegetableByProperty: function (value, param) {
         return this.db.find(function (element) {
             return element[param] === value
@@ -56,7 +64,6 @@ var rottenPotato = {
     isEdible: false
 }
 
-
 Database.addVegetable(tomato)
 Database.addVegetable(potato)
 Database.addVegetable(cucumber)
@@ -65,12 +72,7 @@ Database.addVegetable(rottenPotato)
 
 console.log(Database.db)
 
-Database.findVegetableByProperty(3, 'id')
-
-console.log(Database.db)
-
 console.log(Database.findVegetableByProperty('Tomato', 'name'))
 console.log(Database.findVegetableByProperty('Test', 'name'))
 
-
-
+Database.removeVegetableByProperty(4, 'id')
