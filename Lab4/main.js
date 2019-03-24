@@ -180,28 +180,25 @@ function Vegetable(name, color, size, species, kingdom, weight, isEdible) {
 Vegetable.prototype = Object.create(Plant.prototype)
 Vegetable.prototype.constructor = Plant
 
-Vegetable.prototype = {
-    getWeight: function () {
-        return this.weight
-    },
-    getIsEdible: function () {
-        return this.isEdible
-    },
-    setWeight: function (weight) {
-        this.weight = weight
-    },
-    setIsEdible: function (isEdible) {
-        this.isEdible = isEdible
-    },
-    message: function () {
-        return 'Hello, i am Vegetable (' + this.name + ' ' + this.color + ')'
-    }
+Vegetable.prototype.getWeight = function () {
+    return this.weight
+}
+
+Vegetable.prototype.getIsEdible = function () {
+    return this.isEdible
+}
+
+Vegetable.prototype.setWeight = function (weight) {
+    this.weight = weight
+}
+
+Vegetable.prototype.setIsEdible = function (isEdible) {
+    this.isEdible = isEdible
+}
+
+Vegetable.prototype.message = function () {
+    return 'Hello, i am Vegetable (' + this.name + ' ' + this.color + ')'
 }
 
 var Tomato = new Vegetable('Tomato', 'red', 30, 'species', 'kingdom', 900, true)
 console.log(Tomato.message())
-
-
-
-
-
