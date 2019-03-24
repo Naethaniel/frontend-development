@@ -1,3 +1,130 @@
+// Zadanie 1
+
+var lib = {}
+
+lib.module = (function () {
+    var db = []
+
+    function getSizeOfDb() {
+        return db.length
+    }
+
+    return {
+        addVegetable: function (vegetable) {
+            if (!this.findVegetableByProperty(vegetable.name, 'name')) {
+                db.push(vegetable)
+                return vegetable
+            } else {
+                console.log('Sorry we do not allow duplicates in our database.')
+            }
+        },
+        removeVegetableByProperty: function (value, param) {
+            var index = db.findIndex(function (elem) {
+                return elem[param] === value
+            })
+            if (index) {
+                var removed = db[index]
+                db.splice(index, 1)
+                return removed
+            }
+        },
+        findVegetableByProperty: function (value, property) {
+            return db.find(function (vegetable) {
+                return vegetable[property] === value
+            })
+        },
+        findVegetablesByProperty: function (value, param) {
+            return db.filter(function (element) {
+                return element[param] === value
+            })
+        },
+        updateVegetable: function (oldVegetable, newVegetable) {
+            var index = db.findIndex(function (elem) {
+                return elem.name === oldVegetable.name
+            })
+            if (index) {
+                newVegetable.id = db[index].id
+                db[index] = newVegetable
+            }
+        },
+        getDatabase: function () {
+            return db
+        },
+        getDatabaseSize: function () {
+            return getSizeOfDb()
+        }
+    }
+})()
+
+var tomato = new Vegetable(
+    'Tomato',
+    'Red',
+    'Small',
+    'Solanum lycopersicum',
+    'Plantae',
+    2,
+    true
+)
+
+var potato = new Vegetable(
+    'Potato',
+    'Brown',
+    'Big',
+    'Solanum tuberosum',
+    'Plantae',
+    10,
+    true
+)
+
+var cucumber = new Vegetable(
+    'Cucumber',
+    'Green',
+    'Big',
+    'Cucumis sativus',
+    'Plantae',
+    5,
+    true
+)
+
+var rottenPotato = new Vegetable(
+    'Rotten potato',
+    'Brown',
+    'Big',
+    'Solanum tuberosum',
+    'Plantae',
+    250,
+    false
+)
+
+lib.module.addVegetable(tomato)
+lib.module.addVegetable(potato)
+lib.module.addVegetable(cucumber)
+lib.module.addVegetable(cucumber)
+lib.module.addVegetable(rottenPotato)
+
+console.log(lib.module.getDatabase())
+
+console.log(lib.module.findVegetableByProperty('Tomato', 'name'))
+console.log(lib.module.findVegetableByProperty('Test', 'name'))
+
+lib.module.removeVegetableByProperty(4, 'id')
+lib.module.findVegetablesByProperty('Plantae', 'kingdom')
+
+var newVegetable = {
+    name: 'Super new cucumber',
+    color: 'Light green',
+    size: 'Gigantic',
+    species: 'Cucumis sativus',
+    kingdom: 'Plantae',
+    weight: 300,
+    isEdible: true
+}
+
+lib.module.updateVegetable(cucumber, newVegetable)
+
+console.log(lib.module.getDatabase())
+console.log(lib.module.getDatabaseSize())
+
 // Zadanie 2
 
 function Plant(name, color, size, species, kingdom) {
