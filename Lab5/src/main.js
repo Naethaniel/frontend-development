@@ -59,7 +59,7 @@ const aPlant = new Plant(
     300,
     'Plant',
     'Fauna'
-);
+)
 console.log(aPlant.message())
 console.log(aPlant.name)
 
@@ -99,8 +99,129 @@ const aVegetable = new Vegetable(
     'Fauna',
     10,
     false
-);
+)
 
 console.log(aVegetable.message())
 console.log(aVegetable.weight)
 console.log(aVegetable.isEdible)
+
+const lib = {}
+
+lib.module = (() => {
+    const db = []
+    const getSizeOfDb = () => db.length
+
+    const addVegetable = (vegetable) => {
+        if (!findVegetableByProperty(vegetable.name, 'name')) {
+            db.push(vegetable)
+            return vegetable
+        } else {
+            console.log('Sorry we do not allow duplicates in our database.')
+        }
+    }
+
+    const removeVegetableByProperty = (value, param) => {
+        const index = db.findIndex(elem => elem[param] === value)
+        if (index) {
+            const removed = db[index]
+            db.splice(index, 1)
+            return removed
+        }
+    }
+
+    const findVegetableByProperty = (value, property) => {
+        return db.find(vegetable => vegetable[property] === value)
+    }
+
+    const findVegetablesByProperty = (value, param) => {
+        return db.filter(element => element[param] === value)
+    }
+
+    const updateVegetable = (oldVegetable, newVegetable) => {
+        const index = db.findIndex(elem => elem.name === oldVegetable.name)
+        if (index) {
+            db[index] = newVegetable
+        }
+    }
+
+    return {
+        getDatabase: () => db,
+        getDatabaseSize: () => getSizeOfDb(),
+        addVegetable,
+        removeVegetableByProperty,
+        findVegetableByProperty,
+        findVegetablesByProperty,
+        updateVegetable
+    }
+})()
+
+const tomato = new Vegetable(
+    'Tomato',
+    'Red',
+    'Small',
+    'Solanum lycopersicum',
+    'Plantae',
+    2,
+    true
+)
+
+const potato = new Vegetable(
+    'Potato',
+    'Brown',
+    'Big',
+    'Solanum tuberosum',
+    'Plantae',
+    10,
+    true
+)
+
+const cucumber = new Vegetable(
+    'Cucumber',
+    'Green',
+    'Big',
+    'Cucumis sativus',
+    'Plantae',
+    5,
+    true
+)
+
+const rottenPotato = new Vegetable(
+    'Rotten potato',
+    'Brown',
+    'Big',
+    'Solanum tuberosum',
+    'Plantae',
+    250,
+    false
+)
+
+console.log(lib.module.db)
+
+lib.module.addVegetable(tomato)
+lib.module.addVegetable(potato)
+lib.module.addVegetable(cucumber)
+lib.module.addVegetable(cucumber)
+lib.module.addVegetable(rottenPotato)
+
+console.log(lib.module.getDatabase())
+
+console.log(lib.module.findVegetableByProperty('Tomato', 'name'))
+console.log(lib.module.findVegetableByProperty('Test', 'name'))
+
+lib.module.removeVegetableByProperty('Rotten potato', 'name')
+lib.module.findVegetablesByProperty('Plantae', 'kingdom')
+
+const newVegetable = {
+    name: 'Super new cucumber',
+    color: 'Light green',
+    size: 'Gigantic',
+    species: 'Cucumis sativus',
+    kingdom: 'Plantae',
+    weight: 300,
+    isEdible: true
+}
+
+lib.module.updateVegetable(cucumber, newVegetable)
+
+console.log(lib.module.getDatabase())
+console.log(lib.module.getDatabaseSize())
