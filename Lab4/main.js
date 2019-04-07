@@ -53,7 +53,7 @@ lib.module = (function () {
             return getSizeOfDb()
         }
     }
-})()
+})();
 
 var tomato = new Vegetable(
     'Tomato',
