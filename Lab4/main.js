@@ -43,7 +43,6 @@ lib.module = (function () {
                 return elem.name === oldVegetable.name
             })
             if (index) {
-                newVegetable.id = db[index].id
                 db[index] = newVegetable
             }
         },
@@ -107,7 +106,7 @@ console.log(lib.module.getDatabase())
 console.log(lib.module.findVegetableByProperty('Tomato', 'name'))
 console.log(lib.module.findVegetableByProperty('Test', 'name'))
 
-lib.module.removeVegetableByProperty(4, 'id')
+lib.module.removeVegetableByProperty('Rotten potato', 'name')
 lib.module.findVegetablesByProperty('Plantae', 'kingdom')
 
 var newVegetable = {
