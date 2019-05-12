@@ -47,8 +47,25 @@ module.exports = class Database {
   }
 
   addVegetable(vegetable) {
+    const {
+      name,
+      color,
+      size,
+      species,
+      kingdom,
+      weight,
+      isEdible
+    } = vegetable;
     if (!this.findVegetableByProperty(vegetable.name, 'name')) {
-      this._db.push(vegetable);
+      this._db.push(new Vegetable(
+        name,
+        color,
+        size,
+        species,
+        kingdom,
+        weight,
+        isEdible
+      ));
       return vegetable
     } else {
       console.log('Sorry we do not allow duplicates in our database.')
