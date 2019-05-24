@@ -55,4 +55,16 @@ app.delete('/api/vegetable', (req, res) => {
     }
 });
 
+app.put('/api/vegetable', (req, res) => {
+    const {oldVegetable, newVegetable} = req.body;
+    if (!oldVegetable || !newVegetable) {
+        res.status(400);
+        res.send({'error': 'New or old vegetable missing'})
+    } else {
+        const createdVegetable = db.updateVegetable(oldVegetable, newVegetable);
+        res.status(200);
+        res.send(createdVegetable)
+    }
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));

@@ -73,7 +73,7 @@ module.exports = class Database {
   };
 
   removeVegetableByProperty(value, param) {
-    const index = this.db.findIndex(elem => elem[param] === value)
+    const index = this.db.findIndex(elem => elem[param] === value);
     if (index) {
       const removed = this._db[index];
       this._db.splice(index, 1);
@@ -90,13 +90,24 @@ module.exports = class Database {
   };
 
   updateVegetable(oldVegetable, newVegetable) {
-    const index = this._db.findIndex(elem => elem.name === oldVegetable.name)
-    if (index) {
-      this._db[index] = newVegetable
+    const index = this._db.findIndex(elem => elem.name === oldVegetable.name);
+    if (index !== -1) {
+      const createdVegetable = new Vegetable(
+          newVegetable.name,
+          newVegetable.color,
+          newVegetable.size,
+          newVegetable.species,
+          newVegetable.kingdom,
+          newVegetable.weight,
+          newVegetable.isEdible,
+          oldVegetable.id
+      );
+      this._db[index] = createdVegetable;
+      return createdVegetable;
     }
   };
 
   get db() {
     return this._db;
   }
-}
+};
