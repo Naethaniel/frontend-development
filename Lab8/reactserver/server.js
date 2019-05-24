@@ -29,4 +29,17 @@ app.post('/api/vegetables', (req, res) => {
 });
 
 
-app.listen(port, () => console.log(`Listening on port ${port}`))
+// Vegetable
+app.get('/api/vegetable', (req, res) => {
+    const property = Object.keys(req.query)[0];
+    if (!property) {
+        res.status(400);
+        res.send({'error': 'No property specified'})
+    } else {
+        const vegetable = db.findVegetableByProperty(req.query[property], property);
+        res.status(200);
+        res.send(vegetable || {})
+    }
+});
+
+app.listen(port, () => console.log(`Listening on port ${port}`));
