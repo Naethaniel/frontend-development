@@ -42,4 +42,17 @@ app.get('/api/vegetable', (req, res) => {
     }
 });
 
+app.delete('/api/vegetable', (req, res) => {
+    const property = Object.keys(req.body)[0];
+    console.log(property);
+    if (!property) {
+        res.status(400);
+        res.send({'error': 'No property specified'})
+    } else {
+        const removedVegetable = db.removeVegetableByProperty(req.body[property], property);
+        res.status(200);
+        res.send(removedVegetable);
+    }
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
