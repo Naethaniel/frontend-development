@@ -6,7 +6,14 @@ export class Vegetable extends Component {
     state = {
         vegetable: null,
         vegetables: [],
-        loading: false
+        loading: false,
+        name: '',
+        color: '',
+        size: '',
+        species: '',
+        kingdom: '',
+        weight: '',
+        isEdible: ''
     }
 
     componentDidMount() {
@@ -50,12 +57,16 @@ export class Vegetable extends Component {
                 <br/>
                 <label>Size :: </label>
                 <label>{_size}</label>
+                <br/>
                 <label>Species :: </label>
                 <label>{_species}</label>
+                <br/>
                 <label>Kingdom :: </label>
                 <label>{_kingdom}</label>
+                <br/>
                 <label>Weight :: </label>
-                <label>{_weight}</label>
+                <label>{_weight} kg</label>
+                <br/>
                 <label>Edible? :: </label>
                 <label>{_isEdible.toString()}</label>
             </div>
@@ -64,7 +75,24 @@ export class Vegetable extends Component {
 
     addVegetable(e) {
         e.preventDefault()
-        // post request here
+        const {
+            name,
+            color,
+            size,
+            species,
+            kingdom,
+            weight,
+            isEdible
+        } = this.state
+        axios.post('http://localhost:4000/api/vegetable', {
+            name,
+            color,
+            size,
+            species,
+            kingdom,
+            weight,
+            isEdible
+        }).then(_ => this.fetchVegetables())
     }
 
     render() {
@@ -85,14 +113,54 @@ export class Vegetable extends Component {
                 </div>
                 {this.state.vegetable && this.renderVegetable()}
                 <div>
+                    Add new vegetable to database
                     <form onSubmit={e => this.addVegetable(e)}>
-                        <label>Enter number</label>
+                        <label>Name&nbsp;</label>
                         <input
-                            value={this.state.number}
-                            onChange={e => this.setState({number: e.target.value})}
+                            value={this.state.name}
+                            onChange={e => this.setState({name: e.target.value})}
                         />
+                        <br/>
+                        <label>Color&nbsp;</label>
+                        <input
+                            value={this.state.color}
+                            onChange={e => this.setState({color: e.target.value})}
+                        />
+                        <br/>
+                        <label>Size&nbsp;</label>
+                        <input
+                            value={this.state.size}
+                            onChange={e => this.setState({size: e.target.value})}
+                            type="number"
+                        />
+                        <br/>
+                        <label>Species&nbsp;</label>
+                        <input
+                            value={this.state.species}
+                            onChange={e => this.setState({species: e.target.value})}
+                        />
+                        <br/>
+                        <label>Kingdom&nbsp;</label>
+                        <input
+                            value={this.state.kingdom}
+                            onChange={e => this.setState({kingdom: e.target.value})}
+                        />
+                        <br/>
+                        <label>Weight&nbsp;</label>
+                        <input
+                            value={this.state.weight}
+                            onChange={e => this.setState({weight: e.target.value})}
+                            type="number"
+                        />
+                        <br/>
+                        <label>Edible?&nbsp;</label>
+                        <select onChange={e => this.setState({isEdible: e.target.value})} value={this.state.isEdible}>
+                            <option value={true}>True</option>
+                            <option value={false}>False</option>
+                        </select>
+                        <br/>
                         <button>
-                            Submit
+                            Add vegetable
                         </button>
                     </form>
                 </div>

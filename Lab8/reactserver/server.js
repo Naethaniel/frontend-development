@@ -24,7 +24,7 @@ app.get('/api/vegetables', (req, res) => {
     }
 });
 
-app.post('/api/vegetables', (req, res) => {
+app.post('/api/vegetable', (req, res) => {
     db.addVegetable(req.body);
     res.status(201);
     res.send(req.body)
