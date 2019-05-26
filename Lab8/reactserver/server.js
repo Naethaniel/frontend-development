@@ -1,13 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const Database = require('./db/db.js');
 
 const app = express();
 const port = 4000;
 const db = new Database();
-app.use(bodyParser.json());
 
+app.use(cors())
+app.use(bodyParser.json());
 
 // Vegetables
 app.get('/api/vegetables', (req, res) => {
