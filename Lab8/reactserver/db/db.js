@@ -74,7 +74,7 @@ module.exports = class Database {
 
   removeVegetableByProperty(value, param) {
     const index = this.db.findIndex(elem => elem[param] === value);
-    if (index) {
+    if (index !== -1) {
       const removed = this._db[index];
       this._db.splice(index, 1);
       return removed
