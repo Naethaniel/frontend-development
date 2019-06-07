@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 
+import API_URL from '../config'
+
 export class VegetableList extends Component {
 
   state = {
     vegetables: [],
     loading: false,
-  };
+  }
 
   componentDidMount() {
     this.fetchVegetables()
@@ -14,13 +16,25 @@ export class VegetableList extends Component {
 
   async fetchVegetables() {
     this.setState({loading: !this.state.loading})
-    const vegetables = await axios.get('http://localhost:4000/api/vegetables').then(resp => resp.data.vegetables)
+    const vegetables = await axios.get(`${API_URL}vegetables`).then(resp => resp.data.vegetables)
     this.setState({vegetables, loading: !this.state.loading})
+  }
+
+  deleteVegetable(vegetable) {
+    console.log(vegetable)
+    if (window.confirm(`Are you sure you want to delete ${vegetable._name}`)) {
+      const data = {
+        _name: vegetable._name
+      }
+      axios.delete(`${API_URL}vegetable`, {data})
+        .then((res) => {console.log(res); this.fetchVegetables()})
+        .catch(error => alert(error))
+    }
   }
 
   renderVegetables() {
     return this.state.vegetables.map(vegetable => (
-      <tr>
+      <tr key={vegetable._name}>
         <td>{vegetable._name}</td>
         <td>{vegetable._color}</td>
         <td>{vegetable._size}</td>
@@ -29,7 +43,7 @@ export class VegetableList extends Component {
         <td>{vegetable._weight}</td>
         <td>{vegetable._isEdible.toString()}</td>
         <td>
-          <button>Delete</button>
+          <button onClick={() => this.deleteVegetable(vegetable)}>Delete</button>
         </td>
       </tr>
     ))
@@ -46,6 +60,7 @@ export class VegetableList extends Component {
     return (
       <div>
         <table>
+          <tbody>
           <tr>
             <th>Name</th>
             <th>Color</th>
@@ -57,6 +72,7 @@ export class VegetableList extends Component {
             <th>Actions</th>
           </tr>
           {this.renderVegetables()}
+          </tbody>
         </table>
       </div>
     )
