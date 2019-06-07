@@ -7,21 +7,13 @@ import API_URL from '../config'
 export class AddVegetable extends Component {
 
   render() {
-    if (this.state.loading) {
-      return (
-        <div>
-          Loading...
-        </div>
-      )
-    }
     return (
       <div className='container'>
         <Formik
           initialValues={{isEdible: true}}
           onSubmit={values => {
-            console.log(values)
             axios.post(`${API_URL}vegetable`, values)
-              .then((res) => this.props.history.push('/'))
+              .then(() => this.props.history.push('/'))
               .catch(error => alert(error))
           }}
           render={props => (
@@ -33,6 +25,7 @@ export class AddVegetable extends Component {
                 onBlur={props.handleBlur}
                 value={props.values.name}
                 name='name'
+                required
               />
               <label htmlFor='color'>Color</label>
               <input
@@ -41,6 +34,7 @@ export class AddVegetable extends Component {
                 onBlur={props.handleBlur}
                 value={props.values.color}
                 name='color'
+                required
               />
               <label htmlFor='size'>Size</label>
               <input
@@ -50,6 +44,7 @@ export class AddVegetable extends Component {
                 value={props.values.size}
                 name='size'
                 min='1'
+                required
               />
               <label htmlFor='species'>Species</label>
               <input
@@ -58,6 +53,7 @@ export class AddVegetable extends Component {
                 onBlur={props.handleBlur}
                 value={props.values.species}
                 name='species'
+                required
               />
               <label htmlFor='kingdom'>Kingdom</label>
               <input
@@ -66,6 +62,7 @@ export class AddVegetable extends Component {
                 onBlur={props.handleBlur}
                 value={props.values.kingdom}
                 name='kingdom'
+                required
               />
               <label htmlFor='weight'>weight</label>
               <input
@@ -75,6 +72,7 @@ export class AddVegetable extends Component {
                 value={props.values.weight}
                 name='weight'
                 min='1'
+                required
               />
               <label htmlFor='isEdible'>Edible</label>
               <select
@@ -82,6 +80,7 @@ export class AddVegetable extends Component {
                 value={props.values.isEdible}
                 onChange={props.handleChange}
                 onBlur={props.handleBlur}
+                required
               >
                 <option value={true} label='True'/>
                 <option value={false} label='False'/>

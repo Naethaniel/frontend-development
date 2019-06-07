@@ -36,3 +36,17 @@ table, th, td {
 .container {
   margin-top: 10px;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+form > button, select {
+  max-width: 60px;
+}
+
+form > input {
+  max-width: 100px;
+}
