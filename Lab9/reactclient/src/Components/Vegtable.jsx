@@ -48,28 +48,27 @@ export class Vegetable extends Component {
             _isEdible
         } = this.state.vegetable
         return (
-            <div>
-                <label>Name :: </label>
-                <label>{_name}</label>
-                <br/>
-                <label>Color :: </label>
-                <label>{_color}</label>
-                <br/>
-                <label>Size :: </label>
-                <label>{_size}</label>
-                <br/>
-                <label>Species :: </label>
-                <label>{_species}</label>
-                <br/>
-                <label>Kingdom :: </label>
-                <label>{_kingdom}</label>
-                <br/>
-                <label>Weight :: </label>
-                <label>{_weight} kg</label>
-                <br/>
-                <label>Edible? :: </label>
-                <label>{_isEdible.toString()}</label>
-            </div>
+            <table>
+                <tr>
+                    <th> Name</th>
+                    <th> Color</th>
+                    <th> Size</th>
+                    <th> Species</th>
+                    <th> Kingdom</th>
+                    <th> Weight</th>
+                    <th> Edible</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>{_name}</td>
+                    <td>{_color}</td>
+                    <td>{_size}</td>
+                    <td>{_species}</td>
+                    <td>{_kingdom}</td>
+                    <td>{_weight} kg</td>
+                    <td>{_isEdible.toString()}</td>
+                </tr>
+            </table>
         )
     }
 
