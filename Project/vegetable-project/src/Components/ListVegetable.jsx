@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import API_URL from '../config'
 
-export class VegetableList extends Component {
+export class ListVegetable extends Component {
 
   state = {
     vegetables: [],
@@ -74,9 +74,6 @@ export class VegetableList extends Component {
           {this.renderVegetables()}
           </tbody>
         </table>
-        <button>
-          Add vegetable
-        </button>
       </div>
     )
   }

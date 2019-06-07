@@ -2,7 +2,7 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 
 import './App.css'
-import {VegetableList} from "./Components/VegetableList"
+import {ListVegetable} from "./Components/ListVegetable"
 import {AddVegetable} from "./Components/AddVegetable"
 import {About} from "./Components/About"
 
@@ -23,7 +23,7 @@ function App() {
             </li>
           </ul>
         </nav>
-        <Route path='/' exact component={VegetableList}/>
+        <Route path='/' exact component={ListVegetable}/>
         <Route path='/vegetable/add' component={AddVegetable}/>
         <Route path='/about' exact component={About}/>
       </div>
