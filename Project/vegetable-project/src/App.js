@@ -1,10 +1,10 @@
-import React from 'react';
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import React from 'react'
+import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 
-import './App.css';
-import {VegetableList} from "./Components/VegetableList";
-import {AddVegetable} from "./Components/AddVegetable";
-import {About} from "./Components/About";
+import './App.css'
+import {VegetableList} from "./Components/VegetableList"
+import {AddVegetable} from "./Components/AddVegetable"
+import {About} from "./Components/About"
 
 function App() {
   return (
@@ -14,7 +14,11 @@ function App() {
           <ul>
             <li>
               <Link to='/'>Vegetable list</Link>
+            </li>
+            <li>
               <Link to='/vegetable/add'>Add vegetable</Link>
+            </li>
+            <li>
               <Link to='/about'>About</Link>
             </li>
           </ul>
@@ -24,7 +28,7 @@ function App() {
         <Route path='/about' exact component={About}/>
       </div>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

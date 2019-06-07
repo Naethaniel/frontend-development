@@ -58,7 +58,7 @@ export class VegetableList extends Component {
       )
     }
     return (
-      <div>
+      <div className="container">
         <table>
           <tbody>
           <tr>
@@ -74,6 +74,9 @@ export class VegetableList extends Component {
           {this.renderVegetables()}
           </tbody>
         </table>
+        <button>
+          Add vegetable
+        </button>
       </div>
     )
   }
