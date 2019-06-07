@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter as Router, Route, Link} from "react-router-dom"
+import {BrowserRouter as Router, Route, Link, Redirect} from "react-router-dom"
 
 import './App.css'
 import {ListVegetable} from "./Components/ListVegetable"
@@ -13,7 +13,7 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to='/'>Vegetable list</Link>
+              <Link to='/vegetables'>Vegetable list</Link>
             </li>
             <li>
               <Link to='/vegetable/add'>Add vegetable</Link>
@@ -23,9 +23,10 @@ function App() {
             </li>
           </ul>
         </nav>
-        <Route path='/' exact component={ListVegetable}/>
+        <Route path='/vegetables' component={ListVegetable}/>
         <Route path='/vegetable/add' component={AddVegetable}/>
         <Route path='/about' exact component={About}/>
+        <Route component={() => (<Redirect to='/vegetables'/>)}/>
       </div>
     </Router>
   )
