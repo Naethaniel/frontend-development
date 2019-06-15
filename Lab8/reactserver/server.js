@@ -58,8 +58,6 @@ app.delete('/api/vegetable', (req, res) => {
 
 app.put('/api/vegetable', (req, res) => {
     const {oldVegetable, newVegetable} = req.body;
-    console.log(oldVegetable)
-    console.log(newVegetable)
     if (!oldVegetable || !newVegetable) {
         res.status(400);
         res.send({'error': 'New or old vegetable missing'})
