@@ -6,7 +6,7 @@ module.exports = class Database {
       new Vegetable(
         'Tomato',
         'Red',
-        'Small',
+        20,
         'Solanum lycopersicum',
         'Plantae',
         2,
@@ -16,7 +16,7 @@ module.exports = class Database {
       new Vegetable(
         'Potato',
         'Brown',
-        'Big',
+        30,
         'Solanum tuberosum',
         'Plantae',
         10,
@@ -26,7 +26,7 @@ module.exports = class Database {
       new Vegetable(
         'Cucumber',
         'Green',
-        'Big',
+        45,
         'Cucumis sativus',
         'Plantae',
         5,
@@ -36,7 +36,7 @@ module.exports = class Database {
       new Vegetable(
         'Rotten potato',
         'Brown',
-        'Big',
+        11,
         'Solanum tuberosum',
         'Plantae',
         250,

@@ -13,7 +13,7 @@ export class AddVegetable extends Component {
           initialValues={{isEdible: true}}
           onSubmit={values => {
             axios.post(`${API_URL}vegetable`, values)
-              .then(() => this.props.history.push('/vegetables'))
+              .then(() => this.props.history.push('/vegetable/add'))
               .catch(error => alert(error))
           }}
           render={props => (
@@ -64,7 +64,7 @@ export class AddVegetable extends Component {
                 name='kingdom'
                 required
               />
-              <label htmlFor='weight'>weight</label>
+              <label htmlFor='weight'>Weight</label>
               <input
                 type='number'
                 onChange={props.handleChange}

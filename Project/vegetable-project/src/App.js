@@ -13,7 +13,7 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to='/vegetables'>Vegetable list</Link>
+              <Link to='/vegetable/list'>Vegetable list</Link>
             </li>
             <li>
               <Link to='/vegetable/add'>Add vegetable</Link>
@@ -23,10 +23,10 @@ function App() {
             </li>
           </ul>
         </nav>
-        <Route path='/vegetables' component={ListVegetable}/>
+        <Route path='/vegetable/list' component={ListVegetable}/>
         <Route path='/vegetable/add' component={AddVegetable}/>
         <Route path='/about' exact component={About}/>
-        <Route component={() => (<Redirect to='/vegetables'/>)}/>
+        <Route component={() => (<Redirect to='/vegetable/list'/>)}/>
       </div>
     </Router>
   )
