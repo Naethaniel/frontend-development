@@ -13,7 +13,7 @@ export class AddVegetable extends Component {
           initialValues={{isEdible: true}}
           onSubmit={values => {
             axios.post(`${API_URL}vegetable`, values)
-              .then(() => this.props.history.push('/vegetable/add'))
+              .then(() => this.props.history.push('/vegetable/list'))
               .catch(error => alert(error))
           }}
           render={props => (
