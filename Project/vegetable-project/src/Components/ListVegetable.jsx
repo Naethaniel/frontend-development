@@ -8,6 +8,7 @@ export class ListVegetable extends Component {
 
   state = {
     vegetables: [],
+    filteredVegetables: [],
     loading: false,
     selectedVegetable: {},
     showEditModal: false
@@ -20,7 +21,7 @@ export class ListVegetable extends Component {
   async fetchVegetables() {
     this.setState({loading: !this.state.loading})
     const vegetables = await axios.get(`${API_URL}vegetables`).then(resp => resp.data.vegetables)
-    this.setState({vegetables, loading: !this.state.loading})
+    this.setState({vegetables, loading: !this.state.loading, filteredVegetables: vegetables})
   }
 
   deleteVegetable(vegetable) {
@@ -37,7 +38,7 @@ export class ListVegetable extends Component {
   }
 
   renderVegetables() {
-    return this.state.vegetables.map(vegetable => (
+    return this.state.filteredVegetables.map(vegetable => (
       <tr key={vegetable._name}>
         <td>{vegetable._name}</td>
         <td>{vegetable._color}</td>
@@ -187,6 +188,20 @@ export class ListVegetable extends Component {
     )
   }
 
+  filterVegetables(searchText) {
+    if (!searchText) {
+      this.state.filteredVegetables = this.state.vegetables
+    } else {
+      const filteredVegetables = this.state.vegetables.filter(vegetable => {
+        if (vegetable._name && vegetable._name.toLowerCase().search(searchText) !== -1) return vegetable
+        if (vegetable._color && vegetable._color.toLowerCase().search(searchText) !== -1) return vegetable
+        if (vegetable._species && vegetable._species.toLowerCase().search(searchText) !== -1) return vegetable
+        if (vegetable._kingdom && vegetable._kingdom.toLowerCase().search(searchText) !== -1) return vegetable
+      })
+      this.setState({filteredVegetables})
+    }
+  }
+
   render() {
     if (this.state.loading) {
       return (
@@ -197,6 +212,8 @@ export class ListVegetable extends Component {
     }
     return (
       <div className="container">
+        <label for="search">Search</label>
+        <input id="search" type="text" onChange={(e) => this.filterVegetables(e.target.value)}/>
         <table>
           <tbody>
           <tr>
