@@ -190,7 +190,7 @@ export class ListVegetable extends Component {
 
   filterVegetables(searchText) {
     if (!searchText) {
-      this.state.filteredVegetables = this.state.vegetables
+      this.setState({filteredVegetables: this.state.vegetables})
     } else {
       const filteredVegetables = this.state.vegetables.filter(vegetable => {
         if (vegetable._name && vegetable._name.toLowerCase().search(searchText) !== -1) return vegetable
@@ -212,7 +212,7 @@ export class ListVegetable extends Component {
     }
     return (
       <div className="container">
-        <label for="search">Search</label>
+        <label htmlFor="search">Search</label>
         <input id="search" type="text" onChange={(e) => this.filterVegetables(e.target.value)}/>
         <table>
           <tbody>
